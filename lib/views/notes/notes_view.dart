@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:noteit/constants/routes.dart';
 import 'package:noteit/enums/menu_action.dart';
-import 'package:noteit/extensions/buildcontext/loc.dart';
 import 'package:noteit/services/auth/auth_service.dart';
-import 'package:noteit/services/auth/bloc/auth_bloc.dart';
-import 'package:noteit/services/auth/bloc/auth_event.dart';
 import 'package:noteit/services/cloud/cloud_note.dart';
 import 'package:noteit/services/cloud/firebase_cloud_storage.dart';
 import 'package:noteit/utilities/dialogs/logout_dialog.dart';
 import 'package:noteit/views/notes/notes_list_view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
-
-extension Count<T extends Iterable> on Stream<T> {
-  Stream<int> get getLength => map((event) => event.length);
-}
 
 class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
@@ -36,18 +28,7 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: StreamBuilder(
-          stream: _notesService.allNotes(ownerUserId: userId).getLength,
-          builder: (context, AsyncSnapshot<int> snapshot) {
-            if (snapshot.hasData) {
-              final noteCount = snapshot.data ?? 0;
-              final text = context.loc.notes_title(noteCount);
-              return Text(text);
-            } else {
-              return const Text('');
-            }
-          },
-        ),
+        title: const Text('Your Notes'),
         actions: [
           IconButton(
             onPressed: () {
@@ -61,17 +42,19 @@ class _NotesViewState extends State<NotesView> {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
-                    context.read<AuthBloc>().add(
-                          const AuthEventLogOut(),
-                        );
+                    await AuthService.firebase().logOut();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      loginRoute,
+                      (_) => false,
+                    );
                   }
               }
             },
             itemBuilder: (context) {
-              return [
+              return const [
                 PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
-                  child: Text(context.loc.logout_button),
+                  child: Text('Log out'),
                 ),
               ];
             },
