@@ -3,7 +3,6 @@ import 'package:noteit/services/auth/auth_service.dart';
 import 'package:noteit/utilities/dialogs/cannot_share_empty_note_dialog.dart';
 import 'package:noteit/utilities/generics/get_arguments.dart';
 import 'package:noteit/services/cloud/cloud_note.dart';
-import 'package:noteit/services/cloud/cloud_storage_exceptions.dart';
 import 'package:noteit/services/cloud/firebase_cloud_storage.dart';
 import 'package:share_plus/share_plus.dart';
 

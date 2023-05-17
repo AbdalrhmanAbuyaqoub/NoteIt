@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteit/constants/routes.dart';
-import 'package:noteit/helpers/loading/loading_screen.dart';
-import 'package:noteit/services/auth/firebase_auth_provider.dart';
-import 'package:noteit/views/forgot_password_view.dart';
 import 'package:noteit/views/login_view.dart';
 import 'package:noteit/views/notes/create_update_note_view.dart';
 import 'package:noteit/views/notes/notes_view.dart';
 import 'package:noteit/views/register_view.dart';
 import 'package:noteit/views/verify_email_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:noteit/services/auth/auth_service.dart';
 
 void main() {

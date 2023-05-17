@@ -97,16 +97,6 @@ class _LoginViewState extends State<LoginView> {
             },
             child: const Text('Login'),
           ),
-          // TextButton(
-          //         onPressed: () {
-          //           context.read<AuthBloc>().add(
-          //                 const AuthEventForgotPassword(),
-          //               );
-          //         },
-          //         child: Text(
-          //           context.loc.login_view_forgot_password,
-          //         ),
-          //       ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
