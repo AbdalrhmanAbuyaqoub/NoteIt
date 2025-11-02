@@ -33,7 +33,6 @@ A simple and elegant note-taking mobile application built with Flutter.
 ### Backend & Cloud Services
 - **Firebase Authentication** - User authentication and management
 - **Cloud Firestore** - NoSQL cloud database for storing notes
-- **Firebase Core** - Firebase SDK integration
 
 ### State Management & Architecture
 - **BLoC Pattern** - Business Logic Component for state management
